@@ -1,15 +1,15 @@
 import re
+import pickle
 import gradio as gr
-from simpletransformers.classification import ClassificationModel, ClassificationArgs
+from simpletransformers.classification import ClassificationModel
 from sentence_splitter import SentenceSplitter
+
+
 splitter = SentenceSplitter(language='ru')
+model = ClassificationModel('bert','molbert')
+with open('non_informations.pkl', 'rb') as handle:
+    exclude_data = pickle.load(handle)
 
-# загрузка датасета
-
-model = ClassificationModel(
-    'bert',
-    'molbert'
-) 
 
 def clean_text(text):
     # создаем регулярное выражение для удаления лишних символов
@@ -65,7 +65,7 @@ def mapping_ratings(x):
             return label
 
 def text_analysis(text):
-    sents = [clean_text(i) for i in splitter.split(text) if len(i.split()) > 7]
+    sents = [clean_text(i) for i in splitter.split(text) if len(i.split()) > 7 and i not in exclude_data]
     outputs, _ = model.predict(sents)
     rating = outputs.mean()
     answer = 'AAA'
@@ -91,7 +91,7 @@ demo = gr.Interface(
     text_analysis,
     gr.Textbox(placeholder="Enter text here..."),
     ["json", 
-     gr.HighlightedText(show_legend=True, container=True)],
+     gr.HighlightedText()],
     examples=[
         ["«Эксперт РА» подтвердил рейтинг компании «Мостотрест»..."],
         ["В то же время, устойчивая база государственных..."],
@@ -101,4 +101,5 @@ demo = gr.Interface(
 
 
 if __name__ == "__main__":
+    demo.queue(max_size=4)
     demo.launch(inbrowser=True, height=1200, share=True)
