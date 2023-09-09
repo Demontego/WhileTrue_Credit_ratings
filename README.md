@@ -17,7 +17,7 @@
 
 Регреесия с дообучением модели bert от ai-forever. Определяет рейтинг по каждому предложению. Без использования парсинга всего документа.
 
-![Alt text](https://github.com/Demontego/WhileTrue_Credit_ratings/blob/main/ezgif-3-cbcf07b8e9.gif)
+https://github.com/Demontego/WhileTrue_Credit_ratings/assets/36605450/5bf3dd86-2ee6-4294-81f6-ee9dceb425d9
 
 Порядок запуска:
 1. Установить anaconda и jupyter notebook
