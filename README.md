@@ -17,6 +17,15 @@
 
 Регреесия с дообучением модели bert от ai-forever. Определяет рейтинг по каждому предложению. Без использования парсинга всего документа.
 
+![Alt text](https://github.com/Demontego/WhileTrue_Credit_ratings/blob/main/ezgif-3-cbcf07b8e9.gif)
+
+Порядок запуска:
+1. Установить anaconda и jupyter notebook
+2. Установить requirements.txt и pandas(for excel)
+3. Обучить модель в ноутбуке
+4. Сохранить последний чекпоинт в корневую директорию с названием molbert
+5. Запустить app.py
+   
 ## Простое решение при помощи чат-гпт
 
 Подаем на вход такой promt:
